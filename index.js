@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000;
 app.use("/css", express.static(path.join(__dirname, "/assets/css")));
 app.use("/img", express.static(path.join(__dirname, "/assets/img")));
 app.use("/views", express.static(__dirname + "/views"));
+app.use(express.urlencoded({ extended: false }));
 
 //ruta home
 app.get("/", (req, res) => {
@@ -16,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/convertir", async (req, res) => {
+app.post("/convertir", async (req, res) => {
     const { imagen } = req.body;
     console.log(imagen)
     if (!imagen) {
@@ -29,11 +30,11 @@ app.get("/convertir", async (req, res) => {
         const img = await jimp.read(imagen);
         const id = uuidv4().slice(0, 6);
         const name = `/img-${id}.jpg`;
-        const pathImg = path.join(__dirname, "/img", name);
-        await imagen
+        const pathImg = path.join(__dirname, "assets/img", name);
+        await img
             .greyscale()
             .resize(350, jimp.AUTO)
-            .img.writeAsync(pathImg)
+            writeAsync(pathImg)
         res.sendFile(pathImg);
     }
     catch (error) {
