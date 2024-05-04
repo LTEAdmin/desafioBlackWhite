@@ -1,5 +1,5 @@
 *{
-    margin: 0;
+    margin: 5%;
     padding: 0;
     box-sizing: border-box;
 }
@@ -28,7 +28,7 @@ input[type=submit] {
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
 }
