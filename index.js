@@ -15,16 +15,8 @@ app.get("/", (req, res) => {
   res.sendFile("/views/index.html", { root: __dirname });
 });
 
-//ruta generica
-app.get("*", (req, res) => {
-  res.status(404).send("Pagina no encontrada, por favor revise la URL");
-});
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
-
-app.get("/convertir ", async (req, res) => {
+app.get("/convertir", async (req, res) => {
     const { imagen } = req.body;
     console.log(imagen)
     if (!imagen) {
@@ -47,4 +39,13 @@ app.get("/convertir ", async (req, res) => {
     catch (error) {
         console.log(error);
     }
+});
+
+//ruta generica
+app.get("*", (req, res) => {
+  res.status(404).send("Pagina no encontrada, por favor revise la URL");
+});
+
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
 });
