@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
+const path= require('path');
 const port = process.env.PORT || 3000;
 
 //rutas estaticas a traves de middlewares
-app.use('/css', express.static(__dirname + '/css'));
+app.use('/css', express.static(path.join(__dirname , '/assets/css')));
+
 app.use('/views', express.static(__dirname + '/views'));
 
 //ruta home 
